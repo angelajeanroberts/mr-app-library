@@ -39,24 +39,29 @@ export const fetchSearchValue = value => dispatch => {
 
 export const fetchSearchResults = (value, category) => async dispatch => {
   try {
-    let response
-    let results
+    let response;
+    let results;
     switch (category) {
-      case 'title':
-      response = await axios.get(`http://openlibrary.org/search.json?title=${value}`)
-      results = response.data.docs
-      console.log('results', results)
-      break;
-      case 'author':
-      response =  await axios.get(`http://openlibrary.org/search.json?author=${value}`)
-      results = response.data.docs;
-      break;
-      case 'subject':
-      response =  await axios.get(`http://openlibrary.org/subjects/${value}.json`)
-      results = response.data.works
-      break;
+      case "title":
+        response = await axios.get(
+          `http://openlibrary.org/search.json?title=${value}`
+        );
+        results = response.data.docs;
+        break;
+      case "author":
+        response = await axios.get(
+          `http://openlibrary.org/search.json?author=${value}`
+        );
+        results = response.data.docs;
+        break;
+      case "subject":
+        response = await axios.get(
+          `http://openlibrary.org/subjects/${value}.json`
+        );
+        results = response.data.works;
+        break;
       default:
-        console.log('Invalid search category')
+        console.log("Invalid search category");
     }
     dispatch(setSearchResults(results));
   } catch (error) {
@@ -64,9 +69,18 @@ export const fetchSearchResults = (value, category) => async dispatch => {
   }
 };
 
-export const fetchSelectedBook = book => dispatch => {
+export const fetchSelectedBook = book => async dispatch => {
   try {
-    dispatch(setSelectedBook(book));
+    if (book.title) {
+      const isbn = book.isbn[0];
+      const bookDetails = await axios.get(
+        `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=details&format=json`
+      );
+      console.log("bookDetails", bookDetails.data[`ISBN:${isbn}`].details);
+      dispatch(setSelectedBook(bookDetails.data[`ISBN:${isbn}`].details));
+    } else {
+      dispatch(setSelectedBook({}));
+    }
   } catch (error) {
     console.log(error);
   }

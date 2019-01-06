@@ -13,17 +13,24 @@ class SearchResults extends React.Component {
     };
   }
 
-  handleClick = event => {
-    console.log(event.target.value);
-    const bookIdx = event.target.value;
+  showSingleBookDetail = event => {
+    event.persist()
+    const bookIdx = Number(event.target.value);
     const book = this.props.searchResults.filter(
-      (value, index) => index === bookIdx
+    (value, index) => index === bookIdx
     )[0];
-    fetchSelectedBook(book);
+    console.log('book', book)
+    this.props.fetchSelectedBook(book);
     this.setState({
       showSingleBook: true
     });
   };
+
+  closeSingleBookDetail = () => {
+    this.setState({
+      showSingleBook: false
+    })
+  }
 
   render() {
     return (
@@ -37,7 +44,6 @@ class SearchResults extends React.Component {
               horizontal={false}
             >
               {this.props.searchResults.map((book, index) => {
-                console.log("book", book)
                 return (
                   <Panel key={index}>
                     <Panel.Heading>
@@ -48,7 +54,7 @@ class SearchResults extends React.Component {
                     <Panel.Body>
                       <div>Author: {book.author_name ? book.author_name[0] : book.authors ? book.authors[0].name : 'N/A'}</div>
                       <div>First Published: {book.first_publish_year ? book.first_publish_year : 'N/A'}</div>
-                      <button type='button' value={index} onClick={this.handleClick}>Show More</button>
+                      <button type='button' value={index} onClick={this.showSingleBookDetail}>Show More</button>
                     </Panel.Body>
                   </Panel>
                 );
@@ -58,7 +64,7 @@ class SearchResults extends React.Component {
         ) : (
           <h1>"Loading results..."</h1>
         )}
-        {this.state.showSingleBook && <SingleBook />}
+        {this.state.showSingleBook && <SingleBook closeSingleBookDetail={this.closeSingleBookDetail}/>}
       </div>
     );
   }
