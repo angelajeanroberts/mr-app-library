@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSelectedBook } from "../store";
 import SingleBook from "./single-book";
+import ScrollArea from "react-scrollbar";
+import { Panel } from "react-bootstrap";
 
 class SearchResults extends React.Component {
   constructor() {
@@ -14,7 +16,9 @@ class SearchResults extends React.Component {
   handleClick = event => {
     console.log(event.target.value);
     const bookIdx = event.target.value;
-    const book = this.props.searchResults.filter((value, index) => index === bookIdx)[0]
+    const book = this.props.searchResults.filter(
+      (value, index) => index === bookIdx
+    )[0];
     fetchSelectedBook(book);
     this.setState({
       showSingleBook: true
@@ -24,16 +28,36 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div>
-        <h1>Showing results for: {this.props.searchValue}</h1>
-        {this.props.searchResults
-          ? this.props.searchResults.map((book, index) => {
-              return (
-                <div key={index} value={index} onClick={this.handleClick}>
-                  {book.title}
-                </div>
-              );
-            })
-          : <h1>"Loading results..."</h1>}
+        <h1>Showing results for: "{this.props.searchValue}"</h1>
+        {this.props.searchResults ? (
+          <div className="scroll-element">
+            <ScrollArea
+              speed={0.8}
+              contentClassName="content"
+              horizontal={false}
+            >
+              {this.props.searchResults.map((book, index) => {
+                console.log("book", book)
+                return (
+                  <Panel key={index}>
+                    <Panel.Heading>
+                      <Panel.Title componentClass="h3">
+                        Title: {book.title}
+                      </Panel.Title>
+                    </Panel.Heading>
+                    <Panel.Body>
+                      <div>Author: {book.author_name ? book.author_name[0] : book.authors ? book.authors[0].name : 'N/A'}</div>
+                      <div>First Published: {book.first_publish_year ? book.first_publish_year : 'N/A'}</div>
+                      <button type='button' value={index} onClick={this.handleClick}>Show More</button>
+                    </Panel.Body>
+                  </Panel>
+                );
+              })}
+            </ScrollArea>
+          </div>
+        ) : (
+          <h1>"Loading results..."</h1>
+        )}
         {this.state.showSingleBook && <SingleBook />}
       </div>
     );

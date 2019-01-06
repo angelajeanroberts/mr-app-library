@@ -45,6 +45,7 @@ export const fetchSearchResults = (value, category) => async dispatch => {
       case 'title':
       response = await axios.get(`http://openlibrary.org/search.json?title=${value}`)
       results = response.data.docs
+      console.log('results', results)
       break;
       case 'author':
       response =  await axios.get(`http://openlibrary.org/search.json?author=${value}`)
@@ -53,7 +54,6 @@ export const fetchSearchResults = (value, category) => async dispatch => {
       case 'subject':
       response =  await axios.get(`http://openlibrary.org/subjects/${value}.json`)
       results = response.data.works
-      console.log('results', response)
       break;
       default:
         console.log('Invalid search category')
