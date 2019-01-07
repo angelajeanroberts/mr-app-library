@@ -71,15 +71,14 @@ export const fetchSearchResults = (value, category) => async dispatch => {
 
 export const fetchSelectedBook = book => async dispatch => {
   try {
-    if (book.title) {
+    if (book.isbn) {
       const isbn = book.isbn[0];
       const bookDetails = await axios.get(
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=details&format=json`
       );
-      console.log("bookDetails", bookDetails.data[`ISBN:${isbn}`].details);
       dispatch(setSelectedBook(bookDetails.data[`ISBN:${isbn}`].details));
     } else {
-      dispatch(setSelectedBook({}));
+      dispatch(setSelectedBook({error: 'Additional details unavailable'}));
     }
   } catch (error) {
     console.log(error);
