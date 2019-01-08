@@ -1,9 +1,143 @@
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-color: #cbebfd;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+  background-color: #71beea;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-icon {
+  height: 50px;
+  justify-content: right;
+  margin-left: 20px;
+}
+
+.navbar-header {
+  font-size: 50px;
+  margin-left: 20px;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing h1 {
+  font-weight: bolder;
+}
+
+hr {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #ffffff;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-form {
+  justify-content: center;
+  display: flex;
+  font-size: 20px;
+}
+
+.filter-form,
+.sort-form {
+  display: flex;
+  font-size: 16px;
+}
+
+.refine-label {
+  align-self: center;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.search-bar {
+  width: 500px;
+}
+
+.search-category {
+  width: 100px;
+}
+
+.filter-category,
+.sort-category {
+  width: 175px;
+}
+
+.search-button,
+.filter-button,
+.sort-button {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.filter-button:disabled,
+.search-button:disabled {
+  opacity: 0.5;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  height: 65vh;
+  align-items: center;
+}
+
+.result-list {
+  display: flex;
+  flex-direction: row;
 }
 
 .scroll-element {
-    height: 500px;
-    width: 750px;
-    overflow: auto;
+  height: 500px;
+  width: 600px;
+  overflow: auto;
+  margin-right: 10px;
+}
+
+.refine-results {
+  margin-left: 10px;
+}
+
+.refine-step {
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.refine-step h3 {
+  margin-top: 0px;
+  font-weight: bolder;
+}
+
+.selection-box {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  flex-flow: row-reverse wrap-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 14px;
+}
+
+.remove-refinement {
+  font-weight: bold;
 }

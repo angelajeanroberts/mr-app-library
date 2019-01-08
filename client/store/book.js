@@ -3,11 +3,13 @@ import axios from "axios";
 const SET_SEARCH_VALUE = "SET_SEARCH_VALUE";
 const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 const SET_SELECTED_BOOK = "SET_SELECTED_BOOK";
+const SET_FILTERED_RESULTS = "SET_FILTERED_RESULTS";
 
 const initialState = {
   searchValue: "",
   searchResults: [],
-  selectedBook: {}
+  selectedBook: {},
+  filteredResults: []
 };
 
 const setSearchValue = value => {
@@ -28,6 +30,12 @@ const setSelectedBook = book => {
     book
   };
 };
+const setFilteredResults = results => {
+  return {
+    type: SET_FILTERED_RESULTS,
+    results
+  };
+};
 
 export const fetchSearchValue = value => dispatch => {
   try {
@@ -42,19 +50,19 @@ export const fetchSearchResults = (value, category) => async dispatch => {
     let response;
     let results;
     switch (category) {
-      case "title":
+      case "Title":
         response = await axios.get(
           `http://openlibrary.org/search.json?title=${value}`
         );
         results = response.data.docs;
         break;
-      case "author":
+      case "Author":
         response = await axios.get(
           `http://openlibrary.org/search.json?author=${value}`
         );
         results = response.data.docs;
         break;
-      case "subject":
+      case "Subject":
         response = await axios.get(
           `http://openlibrary.org/subjects/${value}.json`
         );
@@ -78,8 +86,16 @@ export const fetchSelectedBook = book => async dispatch => {
       );
       dispatch(setSelectedBook(bookDetails.data[`ISBN:${isbn}`].details));
     } else {
-      dispatch(setSelectedBook({error: 'Additional details unavailable'}));
+      dispatch(setSelectedBook({ error: "Additional details unavailable" }));
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchFilteredResults = results => dispatch => {
+  try {
+    dispatch(setFilteredResults(results));
   } catch (error) {
     console.log(error);
   }
@@ -101,6 +117,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         selectedBook: action.book
+      };
+    case SET_FILTERED_RESULTS:
+      return {
+        ...state,
+        filteredResults: action.results
       };
     default:
       return state;

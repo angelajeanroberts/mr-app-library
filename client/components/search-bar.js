@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
   constructor() {
     super();
     this.state = {
-      searchCategory: "title", //choices are title, author, and subject
+      searchCategory: "Title", //choices are title, author, and subject
       searchPlaceholder: "Enter book title here",
       showSearchResults: false,
       searchValue: ""
@@ -16,27 +16,27 @@ class SearchBar extends React.Component {
 
   updateSearchValue = event => {
     this.setState({
-      searchValue: event.currentTarget.value
+      searchValue: event.target.value
     });
   };
 
   updateSearchCategory = event => {
     switch (event.target.value) {
-      case "title":
+      case "Title":
         this.setState({
-          searchCategory: "title",
+          searchCategory: "Title",
           searchPlaceholder: "Enter book title here"
         });
         break;
-      case "author":
+      case "Author":
         this.setState({
-          searchCategory: "author",
+          searchCategory: "Author",
           searchPlaceholder: "Enter book author here"
         });
         break;
-      case "subject":
+      case "Subject":
         this.setState({
-          searchCategory: "subject",
+          searchCategory: "Subject",
           searchPlaceholder: "Enter book subject here"
         });
         break;
@@ -54,32 +54,33 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const searchOptions = ["title", "author", "subject"];
+    const searchOptions = ["Title", "Author", "Subject"];
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="search-bar">
-            <label>Search:</label>
-            <input
-              type="text"
-              placeholder={this.state.searchPlaceholder}
-              onChange={this.updateSearchValue}
-            />
-          </div>
-          {searchOptions.map(option => (
-            <div key={option}>
-              <label>
-                <input
-                  type="radio"
-                  name="searchOption"
-                  value={option}
-                  onChange={this.updateSearchCategory}
-                />
+      <div className="search">
+        <form className="search-form" onSubmit={this.handleSubmit}>
+          <input
+            className="search-bar"
+            type="text"
+            placeholder={this.state.searchPlaceholder}
+            onChange={this.updateSearchValue}
+          />
+          <select
+            className="search-category"
+            onChange={this.updateSearchCategory}
+          >
+            {searchOptions.map(option => (
+              <option key={option} value={option}>
                 {option}
-              </label>
-            </div>
-          ))}
-          <button type="submit">Submit</button>
+              </option>
+            ))}
+          </select>
+          <button
+            className="search-button"
+            type="submit"
+            disabled={this.state.searchValue === ""}
+          >
+            Search
+          </button>
         </form>
         {this.state.showSearchResults && <SearchResults />}
       </div>

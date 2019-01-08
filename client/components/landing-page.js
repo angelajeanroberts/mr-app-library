@@ -3,8 +3,9 @@ import SearchBar from './search-bar';
 
 const LandingPage = () => {
   return (
-    <div>
-      <h1>Landing Page!</h1>
+    <div className='landing'>
+      <h1>LOOKING FOR A BOOK? LET US HELP.</h1>
+      <h3>Search by title, author, or subject.</h3>
       <SearchBar />
     </div>
   );
