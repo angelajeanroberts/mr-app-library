@@ -6,7 +6,7 @@ Library App is a search tool for finding books by title, author, or subject. Vie
 - Utilizes the Open Library Search API, see additional details here: https://openlibrary.org/developers/api
 
 ## Deployed
-Library app is deployed at the following location: https://library-app-aroberts.herokuapp.com/
+Library App is deployed at the following location: https://library-app-aroberts.herokuapp.com/
 
 ## Requirements
 - node v10.14.2
