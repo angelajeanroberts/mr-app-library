@@ -64,7 +64,7 @@ export const fetchSearchResults = (value, category) => async dispatch => {
         break;
       case "Subject":
         response = await axios.get(
-          `http://openlibrary.org/subjects/${value}.json`
+          `http://openlibrary.org/subjects/${value.toLowerCase()}.json`
         );
         results = response.data.works;
         break;

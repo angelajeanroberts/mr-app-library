@@ -41,7 +41,7 @@ class SearchResults extends React.Component {
       <div className="search-results">
         <hr />
         <h3>Showing results for "{this.props.searchValue}"</h3>
-        {this.props.searchResults ? (
+        {this.props.searchResults.length ? (
           <div className="result-list">
             <div className="scroll-element">
               <ScrollArea
@@ -53,24 +53,26 @@ class SearchResults extends React.Component {
                   return (
                     <Panel key={index}>
                       <Panel.Heading>
-                        <Panel.Title componentClass="h3">
-                          Title: {book.title}
+                        <Panel.Title className="list-title">
+                          <b>Title:</b> {book.title}
                         </Panel.Title>
                       </Panel.Heading>
-                      <Panel.Body>
-                        <div>
-                          Author:{" "}
-                          {book.author_name
-                            ? book.author_name[0]
-                            : book.authors
-                            ? book.authors[0].name
-                            : "N/A"}
-                        </div>
-                        <div>
-                          First Published:{" "}
-                          {book.first_publish_year
-                            ? book.first_publish_year
-                            : "N/A"}
+                      <Panel.Body className="list-item">
+                        <div className="list-detail">
+                          <div>
+                            <b>Author:</b>{" "}
+                            {book.author_name
+                              ? book.author_name[0]
+                              : book.authors
+                              ? book.authors[0].name
+                              : "N/A"}
+                          </div>
+                          <div>
+                            <b>First Published:</b>{" "}
+                            {book.first_publish_year
+                              ? book.first_publish_year
+                              : "N/A"}
+                          </div>
                         </div>
                         <button
                           type="button"
@@ -91,7 +93,7 @@ class SearchResults extends React.Component {
             </div>
           </div>
         ) : (
-          <h1>"Loading results..."</h1>
+          <h3>"Loading results..."</h3>
         )}
         {this.state.showSingleBook && (
           <SingleBook closeSingleBookDetail={this.closeSingleBookDetail} />

@@ -83,7 +83,8 @@ hr {
 
 .search-button,
 .filter-button,
-.sort-button {
+.sort-button,
+.modal-button {
   width: 100px;
   margin-left: 10px;
 }
@@ -107,13 +108,29 @@ hr {
 
 .scroll-element {
   height: 500px;
-  width: 600px;
+  width: 500px;
   overflow: auto;
   margin-right: 10px;
 }
 
+.list-title {
+  font-size: 20px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-detail {
+  font-size: 16px;
+}
+
 .refine-results {
   margin-left: 10px;
+  width: 500px;
 }
 
 .refine-step {
@@ -131,7 +148,6 @@ hr {
 .selection-box {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   flex-flow: row-reverse wrap-reverse;
   justify-content: space-evenly;
   align-items: center;
@@ -140,4 +156,49 @@ hr {
 
 .remove-refinement {
   font-weight: bold;
+}
+
+.single-book-modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 25%;
+  left: 32%;
+  width: 35vw;
+  height: 50vh;
+  padding: 10px;
+  margin: 5px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  outline: 0;
+}
+
+.unavailable-message {
+  font-size: 20px;
+  text-align: center;
+}
+
+.detail-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+
+.book-description {
+  font-size: 16px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+.cover-image {
+  margin-left: 10px;
+  max-width: 175px;
+}
+
+.image-unavailable {
+  display: inline-block;
+  text-align: center;
 }
