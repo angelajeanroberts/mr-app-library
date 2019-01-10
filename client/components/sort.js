@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchFilteredResults } from "../store";
+import { setFilteredResults } from "../store";
 
 class Sort extends React.Component {
   constructor() {
@@ -65,15 +65,15 @@ class Sort extends React.Component {
             : "N/A";
         }
         if (sort === "First Published") {
-          aValue = a.first_publish_year ? a.first_publish_year : "N/A";
-          bValue = b.first_publish_year ? b.first_publish_year : "N/A";
+          aValue = a.first_publish_year ? a.first_publish_year : 3000;
+          bValue = b.first_publish_year ? b.first_publish_year : 3000;
         }
         if (aValue < bValue) return -1;
         else if (aValue > bValue) return 1;
         else return 0;
       });
     });
-    this.props.fetchFilteredResults(refinedList);
+    this.props.setFilteredResults(refinedList);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -135,8 +135,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchFilteredResults: results => {
-      dispatch(fetchFilteredResults(results));
+    setFilteredResults: results => {
+      dispatch(setFilteredResults(results));
     }
   };
 };

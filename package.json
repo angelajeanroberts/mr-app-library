@@ -38,6 +38,9 @@
   "dependencies": {
     "@material-ui/core": "^3.8.1",
     "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "express": "^4.16.4",
     "history": "^4.7.2",
     "path": "^0.12.7",
@@ -51,6 +54,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

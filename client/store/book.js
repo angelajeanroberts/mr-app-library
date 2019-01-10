@@ -12,7 +12,7 @@ const initialState = {
   filteredResults: []
 };
 
-const setSearchValue = value => {
+export const setSearchValue = value => {
   return {
     type: SET_SEARCH_VALUE,
     value
@@ -30,19 +30,11 @@ const setSelectedBook = book => {
     book
   };
 };
-const setFilteredResults = results => {
+export const setFilteredResults = results => {
   return {
     type: SET_FILTERED_RESULTS,
     results
   };
-};
-
-export const fetchSearchValue = value => dispatch => {
-  try {
-    dispatch(setSearchValue(value));
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 export const fetchSearchResults = (value, category) => async dispatch => {
@@ -88,14 +80,6 @@ export const fetchSelectedBook = book => async dispatch => {
     } else {
       dispatch(setSelectedBook({ error: "Additional details unavailable" }));
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const fetchFilteredResults = results => dispatch => {
-  try {
-    dispatch(setFilteredResults(results));
   } catch (error) {
     console.log(error);
   }

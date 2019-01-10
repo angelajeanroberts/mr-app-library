@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import SearchResults from "./search-results";
-import { fetchSearchValue, fetchSearchResults } from "../store";
+import { setSearchValue, fetchSearchResults } from "../store";
 
 class SearchBar extends React.Component {
   constructor() {
@@ -48,7 +48,7 @@ class SearchBar extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const formattedValue = this.state.searchValue.replace(/\s/g, "+");
-    this.props.fetchSearchValue(this.state.searchValue);
+    this.props.setSearchValue(this.state.searchValue);
     this.props.fetchSearchResults(formattedValue, this.state.searchCategory);
     this.setState({ showSearchResults: true });
   };
@@ -90,7 +90,7 @@ class SearchBar extends React.Component {
 
 const mapDispatch = dispatch => {
   return {
-    fetchSearchValue: value => dispatch(fetchSearchValue(value)),
+    setSearchValue: value => dispatch(setSearchValue(value)),
     fetchSearchResults: (value, category) =>
       dispatch(fetchSearchResults(value, category))
   };

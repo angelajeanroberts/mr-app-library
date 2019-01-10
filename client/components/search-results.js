@@ -43,51 +43,57 @@ class SearchResults extends React.Component {
         <h3>Showing results for "{this.props.searchValue}"</h3>
         {this.props.searchResults.length ? (
           <div className="result-list">
-            <div className="scroll-element">
-              <ScrollArea
-                speed={0.8}
-                contentClassName="content"
-                horizontal={false}
-              >
-                {results.map((book, index) => {
-                  return (
-                    <Panel key={index}>
-                      <Panel.Heading>
-                        <Panel.Title className="list-title">
-                          <b>Title:</b> {book.title}
-                        </Panel.Title>
-                      </Panel.Heading>
-                      <Panel.Body className="list-item">
-                        <div className="list-detail">
-                          <div>
-                            <b>Author:</b>{" "}
-                            {book.author_name
-                              ? book.author_name[0]
-                              : book.authors
-                              ? book.authors[0].name
-                              : "N/A"}
+            <div className="results">
+              <h3 className="results-subtitle">Results by Title</h3>
+              <hr />
+              <div className="scroll-element">
+                <ScrollArea
+                  speed={0.8}
+                  contentClassName="content"
+                  horizontal={true}
+                >
+                  {results.map((book, index) => {
+                    return (
+                      <Panel key={index}>
+                        <Panel.Heading>
+                          <Panel.Title className="list-title">
+                            <b>Title:</b> {book.title}
+                          </Panel.Title>
+                        </Panel.Heading>
+                        <Panel.Body className="list-item">
+                          <div className="list-detail">
+                            <div>
+                              <b>Author:</b>{" "}
+                              {book.author_name
+                                ? book.author_name[0]
+                                : book.authors
+                                ? book.authors[0].name
+                                : "N/A"}
+                            </div>
+                            <div>
+                              <b>First Published:</b>{" "}
+                              {book.first_publish_year
+                                ? book.first_publish_year
+                                : "N/A"}
+                            </div>
                           </div>
-                          <div>
-                            <b>First Published:</b>{" "}
-                            {book.first_publish_year
-                              ? book.first_publish_year
-                              : "N/A"}
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          value={book.key}
-                          onClick={this.showSingleBookDetail}
-                        >
-                          Show More
-                        </button>
-                      </Panel.Body>
-                    </Panel>
-                  );
-                })}
-              </ScrollArea>
+                          <button
+                            type="button"
+                            value={book.key}
+                            onClick={this.showSingleBookDetail}
+                          >
+                            Show More
+                          </button>
+                        </Panel.Body>
+                      </Panel>
+                    );
+                  })}
+                </ScrollArea>
+              </div>
             </div>
             <div className="refine-results">
+              <h3 className="results-subtitle">Refine Selection</h3>
+              <hr />
               <Filter />
               <Sort />
             </div>

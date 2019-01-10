@@ -4,9 +4,9 @@ const Navbar = () => (
   <div className="navbar">
     <img
       className="navbar-icon"
-      src="https://ncwc.edu/wp-content/uploads/2016/06/library-icon.png"
+      src="https://cdn4.iconfinder.com/data/icons/ios-web-user-interface-multi-circle-flat-vol-3/512/Book_brochure_magazine_read-512.png"
     />
-    <div className="navbar-header">Witty Title</div>
+    <div className="navbar-header">Library App</div>
   </div>
 );
 

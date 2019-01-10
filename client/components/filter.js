@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchFilteredResults } from "../store";
+import { setFilteredResults } from "../store";
 
 class Filter extends React.Component {
   constructor() {
@@ -75,7 +75,7 @@ class Filter extends React.Component {
         });
       }
     });
-    this.props.fetchFilteredResults(refinedList);
+    this.props.setFilteredResults(refinedList);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -150,8 +150,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchFilteredResults: results => {
-      dispatch(fetchFilteredResults(results));
+    setFilteredResults: results => {
+      dispatch(setFilteredResults(results));
     }
   };
 };
