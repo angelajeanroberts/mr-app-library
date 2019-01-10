@@ -118,6 +118,7 @@ hr {
 
 .scroll-element {
   overflow: auto;
+  overflow-y: auto;
   margin-right: 10px;
 }
 
