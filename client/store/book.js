@@ -44,19 +44,19 @@ export const fetchSearchResults = (value, category) => async dispatch => {
     switch (category) {
       case "Title":
         response = await axios.get(
-          `http://openlibrary.org/search.json?title=${value}`
+          `https://openlibrary.org/search.json?title=${value}`
         );
         results = response.data.docs;
         break;
       case "Author":
         response = await axios.get(
-          `http://openlibrary.org/search.json?author=${value}`
+          `https://openlibrary.org/search.json?author=${value}`
         );
         results = response.data.docs;
         break;
       case "Subject":
         response = await axios.get(
-          `http://openlibrary.org/subjects/${value.toLowerCase()}.json`
+          `https://openlibrary.org/subjects/${value.toLowerCase()}.json`
         );
         results = response.data.works;
         break;
