@@ -32,8 +32,6 @@ class Filter extends React.Component {
     };
     const filters = [...this.state.filters, filter];
     this.setState({
-      currentFilterOption: "",
-      currentFilterValue: "",
       filters
     });
   };
@@ -43,7 +41,6 @@ class Filter extends React.Component {
     const revisedFilters = currentFilters.filter(
       (filter, index) => index !== Number(event.target.value)
     );
-    console.log(revisedFilters);
     this.setState({
       filters: revisedFilters
     });
@@ -95,7 +92,7 @@ class Filter extends React.Component {
         <h3>Filter</h3>
         <form className="filter-form" onSubmit={this.addFilter}>
           <input
-            className=""
+            className="filter-value"
             type="text"
             placeholder={"Refine here"}
             onChange={this.updateFilterValue}

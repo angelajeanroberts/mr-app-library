@@ -20,7 +20,6 @@ class SingleBook extends React.Component {
 
   render() {
     const { selectedBook } = this.props;
-    console.log("selectedBook", selectedBook);
     return (
       <div>
         <Modal

@@ -1,7 +1,7 @@
 # Library App
 
 ## Overview
-Library App is a search tool for finding books by title, author, or subject. View a list of your results and further refine by sort or filtering.
+Library App is a search tool for finding books by title, author, or subject. View a list of your results and further refine by filtering and sorting.
 - Built with Node.js, React, Redux, and Webpack
 - Utilizes the Open Library Search API, see additional details here: https://openlibrary.org/developers/api
 

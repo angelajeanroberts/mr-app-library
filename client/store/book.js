@@ -63,6 +63,9 @@ export const fetchSearchResults = (value, category) => async dispatch => {
       default:
         console.log("Invalid search category");
     }
+    if (results.length === 0) {
+      results = ["No results found"];
+    }
     dispatch(setSearchResults(results));
   } catch (error) {
     console.log(error);

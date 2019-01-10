@@ -63,6 +63,11 @@ body {
   width: 100px;
 }
 
+.api-credit {
+  align-self: center;
+  margin-top: 10px;
+}
+
 /* buttons */
 
 .search-button,
@@ -138,6 +143,18 @@ hr {
   width: 500px;
 }
 
+.refine-step {
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.refine-step h3 {
+  margin-top: 0px;
+  font-weight: bolder;
+}
+
 .filter-form,
 .sort-form {
   display: flex;
@@ -153,18 +170,6 @@ hr {
 .filter-category,
 .sort-category {
   width: 175px;
-}
-
-.refine-step {
-  background-color: white;
-  border-radius: 30px;
-  padding: 20px;
-  margin-bottom: 10px;
-}
-
-.refine-step h3 {
-  margin-top: 0px;
-  font-weight: bolder;
 }
 
 .selection-box {
@@ -202,13 +207,14 @@ hr {
 .unavailable-message {
   font-size: 20px;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .detail-page {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 20px;
+  margin: 15px;
 }
 
 .book-description {
@@ -230,6 +236,8 @@ hr {
 /* adjustments for tablet view */
 
 @media (max-width: 1050px) {
+  /* search bar */
+
   .search-bar {
     width: 400px;
   }
@@ -238,10 +246,14 @@ hr {
     height: 100vh;
   }
 
+  /* search results */
+
   .result-list {
     display: flex;
     flex-direction: column;
   }
+
+  /* single book modal */
 
   .single-book-modal {
     width: 80vw;
@@ -252,12 +264,16 @@ hr {
 /* adjustments for mobile device */
 
 @media (max-width: 425px) {
+  /* search bar */
+
   .search-form {
     flex-direction: column;
   }
+
   .search-bar {
     width: 300px;
     margin-bottom: 5px;
+    align-self: center;
   }
 
   .search-category {
@@ -271,6 +287,8 @@ hr {
     align-self: center;
   }
 
+  /* search results */
+
   .search-results {
     height: 130vh;
     width: 95vw;
@@ -279,6 +297,8 @@ hr {
   .scroll-element {
     margin-right: 0px;
   }
+
+  /* refine results */
 
   .refine-results {
     width: 95vw;
@@ -290,6 +310,16 @@ hr {
     display: flex;
     flex-direction: column;
   }
+
+  .filter-value {
+    margin-bottom: 5px;
+  }
+
+  .filter-category {
+    margin-bottom: 5px;
+  }
+
+  /* single book modal */
 
   .single-book-modal {
     width: 90vw;
@@ -304,7 +334,7 @@ hr {
     justify-content: center;
   }
 
-  .cover-image{
+  .cover-image {
     align-self: center;
   }
 }

@@ -82,6 +82,10 @@ class SearchBar extends React.Component {
             Search
           </button>
         </form>
+        <div className="api-credit">
+          Powered by{" "}
+          <a href="https://openlibrary.org/developers/api">Open Library</a>
+        </div>
         {this.state.showSearchResults && <SearchResults />}
       </div>
     );

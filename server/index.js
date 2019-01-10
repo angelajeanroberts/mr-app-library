@@ -4,23 +4,18 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 module.exports = app;
 
-// May need the following global Mocha hook:
-// if (process.env.NODE_ENV === 'test') {
-//     after('close the session store', () => sessionStorage.stopExpiringSessions())
-// }
-
-//secrets file can go here if one is needed
+//if necessary in the future, secrets file can be referenced here
 
 const createApp = () => {
-  //logging middle ware can go here
-  //body parsing
-  //compression
-  //passport
-  //auth and api routes
+  //if a more robust backend is needed in the future, the following items can be placed here:
+    // logging middleware
+    // body parsing
+    // compression
+    // passport
+    // auth and api routes
+    // server error catching
 
   app.use(express.static(path.join(__dirname, "..", "public")));
-
-  //404 error catching
 
   app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "public/index.html"));

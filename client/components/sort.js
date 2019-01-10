@@ -12,14 +12,12 @@ class Sort extends React.Component {
   }
 
   updateSortOption = event => {
-    console.log("updateSortOption");
     this.setState({
       currentSortOption: event.target.value
     });
   };
 
   addSort = event => {
-    console.log("addSort");
     event.preventDefault();
     const sortSelections = [
       ...this.state.sortSelections,
@@ -33,14 +31,12 @@ class Sort extends React.Component {
   removeSort = event => {
     const currentSortSelections = [...this.state.sortSelections]
     const revisedSortSelections = currentSortSelections.filter((sort, index) => index !== Number(event.target.value))
-    console.log(revisedSortSelections)
     this.setState({
         sortSelections: revisedSortSelections
     })
 }
 
   refineResultList = () => {
-    console.log("refineResultList");
     let refinedList = this.props.filteredResults.length
       ? [...this.props.filteredResults]
       : [...this.props.searchResults];
