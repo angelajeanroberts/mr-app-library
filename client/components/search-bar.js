@@ -54,7 +54,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const searchOptions = ["Title", "Author", "Subject"];
+    const searchOptions = ["Title", "Author", "Subject"]; 
     return (
       <div className="search">
         <form className="search-form" onSubmit={this.handleSubmit}>

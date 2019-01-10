@@ -29,12 +29,14 @@ class Sort extends React.Component {
   };
 
   removeSort = event => {
-    const currentSortSelections = [...this.state.sortSelections]
-    const revisedSortSelections = currentSortSelections.filter((sort, index) => index !== Number(event.target.value))
+    const currentSortSelections = [...this.state.sortSelections];
+    const revisedSortSelections = currentSortSelections.filter(
+      (sort, index) => index !== Number(event.target.value)
+    );
     this.setState({
-        sortSelections: revisedSortSelections
-    })
-}
+      sortSelections: revisedSortSelections
+    });
+  };
 
   refineResultList = () => {
     let refinedList = this.props.filteredResults.length
@@ -49,6 +51,7 @@ class Sort extends React.Component {
           bValue = b.title.toUpperCase();
         }
         if (sort === "Author") {
+          //depending on the search conducted (author, title, or subject), the result variable name differs
           aValue = a.author_name
             ? a.author_name[0].toUpperCase()
             : a.authors
@@ -61,6 +64,7 @@ class Sort extends React.Component {
             : "N/A";
         }
         if (sort === "First Published") {
+          //not every result will have a publishing year, having those records sort with a value 3000 makes them appear last
           aValue = a.first_publish_year ? a.first_publish_year : 3000;
           bValue = b.first_publish_year ? b.first_publish_year : 3000;
         }
@@ -73,22 +77,24 @@ class Sort extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.sortSelections.length - prevState.sortSelections.length !== 0 &&
+    if (
+      this.state.sortSelections.length - prevState.sortSelections.length !==
+        0 &&
       this.state.sortSelections[this.state.sortSelections.length - 1] !==
-      prevState.sortSelections[prevState.sortSelections.length - 1]
+        prevState.sortSelections[prevState.sortSelections.length - 1]
     ) {
       this.refineResultList();
     }
   }
 
   render() {
-    const filterOptions = ["Title", "Author", "First Published"];
+    const sortOptions = ["Title", "Author", "First Published"];
     return (
       <div className="refine-step">
         <h3>Sort</h3>
         <form className="sort-form" onSubmit={this.addSort}>
           <select className="filter-category" onChange={this.updateSortOption}>
-            {filterOptions.map((option, index) => {
+            {sortOptions.map((option, index) => {
               return (
                 <option key={index} value={option}>
                   {option}

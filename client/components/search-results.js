@@ -16,6 +16,7 @@ class SearchResults extends React.Component {
 
   showSingleBookDetail = event => {
     event.persist();
+    //the book key is a unique identifier that Open Library uses for each work
     const bookKey = event.target.value;
     const selectedBook = this.props.searchResults.filter(
       book => book.key === bookKey
@@ -40,6 +41,7 @@ class SearchResults extends React.Component {
       <div className="search-results">
         <hr />
         <h3>Showing results for "{this.props.searchValue}"</h3>
+        {/* if there is no match, we want to ensure the user knows */}
         {this.props.searchResults[0] === "No results found" ? (
           <h3>{this.props.searchResults[0]}</h3>
         ) : this.props.searchResults.length ? (
@@ -62,6 +64,7 @@ class SearchResults extends React.Component {
             </div>
           </div>
         ) : (
+          // appears while the async request is being made
           <h3>"Loading results..."</h3>
         )}
         {this.state.showSingleBook && (

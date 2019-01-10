@@ -18,6 +18,7 @@ const ScrollElement = props => {
               <div className="list-detail">
                 <div>
                   <b>Author:</b>{" "}
+                  {/* depending on the search conducted (author, title, or subject), the result variable name differs */}
                   {book.author_name
                     ? book.author_name[0]
                     : book.authors
@@ -26,6 +27,7 @@ const ScrollElement = props => {
                 </div>
                 <div>
                   <b>First Published:</b>{" "}
+                  {/* not every result will have a publishing year */}
                   {book.first_publish_year ? book.first_publish_year : "N/A"}
                 </div>
               </div>

@@ -28,11 +28,13 @@ class SingleBook extends React.Component {
           open={this.state.open}
         >
           <div className="single-book-modal">
+            {/* not all books have additional detail available */}
             {selectedBook.error ? (
               <div className="unavailable-message">{selectedBook.error}</div>
             ) : selectedBook.title ? (
               <DisplayDetail selectedBook={selectedBook} />
             ) : (
+              // appears while the async request is being made
               <div>Loading detail...</div>
             )}
             <button

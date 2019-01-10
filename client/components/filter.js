@@ -57,6 +57,7 @@ class Filter extends React.Component {
       } else if (filter.option === "Author") {
         refinedList = refinedList.filter(book => {
           return filterPattern.test(
+            //depending on the search conducted (author, title, or subject), the result variable name differs
             book.author_name
               ? book.author_name[0]
               : book.authors
@@ -67,6 +68,7 @@ class Filter extends React.Component {
       } else if (filter.option === "First Published") {
         refinedList = refinedList.filter(book => {
           return filterPattern.test(
+            //not every result will have a publishing year
             book.first_publish_year ? book.first_publish_year : "N/A"
           );
         });

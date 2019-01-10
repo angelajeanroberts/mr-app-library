@@ -3,8 +3,11 @@ import { FaImage } from "react-icons/fa";
 
 const generateLabel = (label, value) => {
   let formattedValue = value;
+  //the open library api does not include all fields for each book, this ensures the selected detail exists for the book
   if (!value) formattedValue = `${label} is unavailable`;
+  //some values from the open library api are arrays (e.g. authors, langauges), this ensures all values are displayed
   if (Array.isArray(value)) formattedValue = formattedValue.join(", ");
+  //the description field is unique in that it is an object, this ensures the description is shown
   if (typeof value === "object" && !Array.isArray(value)) {
     formattedValue = value.value;
   }
@@ -17,6 +20,7 @@ const generateLabel = (label, value) => {
 
 const DisplayDetail = props => {
   const selectedBook = props.selectedBook;
+  //this can be changed if certain details would like to be added or removed
   const selectedDetail = [
     { label: "Title", value: selectedBook.title },
     {
